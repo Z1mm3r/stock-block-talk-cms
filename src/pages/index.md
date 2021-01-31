@@ -1,31 +1,27 @@
 ---
 templateKey: index-page
-title: Great coffee with a conscience
-image: /img/home-jumbotron.jpg
-heading: Great coffee with a conscience
-subheading: Support sustainable farming while enjoying a cup
+title: Stock and Cryptocurrency News
+image: /img/stockspic.jpg
+heading: Financial News That Matters
+subheading: Videos and Articles About Breaking Stock News
 mainpitch:
-  title: Why Kaldi
-  description: >
-    Kaldi is the coffee store for everyone who believes that great coffee
-    shouldn't just taste good, it should do good too. We source all of our beans
-    directly from small scale sustainable farmers and make sure part of the
-    profits are reinvested in their communities.
-description: >-
-  Kaldi is the ultimate spot for coffee lovers who want to learn about their
-  java’s origin and support the farmers that grew it. We take coffee production,
-  roasting and brewing seriously and we’re glad to pass that knowledge to
-  anyone.
+  title: What We Do
+  description: StockBlockTalk is a new independently run news organization focused
+    on bringing accurate and informative articles and videos for and by the
+    average person.
+description: Keeping up with all the news in the world can be alot. We love
+  reading and watching the news, and our goal is to bring you the most important
+  information to keep you informed and knowledgeable.
 intro:
   blurbs:
-    - image: /img/coffee.png
+    - image: /img/bitcoindollars.jpg
       text: >
         We sell green and roasted coffee beans that are sourced directly from
         independent farmers and farm cooperatives. We’re proud to offer a
         variety of coffee beans grown with great care for the environment and
         local communities. Check our post or contact us directly for current
         availability.
-    - image: /img/coffee-gear.png
+    - image: /img/stockgraphic.jpg
       text: >
         We offer a small, but carefully curated selection of brewing gear and
         tools for every taste and experience level. No matter if you roast your
@@ -46,11 +42,7 @@ intro:
         coffee making techniques. All of the artwork on display there is for
         sale. The full price you pay goes to the artist.
   heading: What we offer
-  description: >
-    Kaldi is the ultimate spot for coffee lovers who want to learn about their
-    java’s origin and support the farmers that grew it. We take coffee
-    production, roasting and brewing seriously and we’re glad to pass that
-    knowledge to anyone. This is an edit via identity...
+  description: TODO......
 main:
   heading: Great coffee with no compromises
   description: >
