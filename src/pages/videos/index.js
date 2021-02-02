@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Layout from '../../components/Layout'
-import BlogRoll from '../../components/BlogRoll'
+import VideoRoll from '../../components/VideoRoll'
 
 export default class VideosIndexPage extends React.Component {
   render() {
@@ -22,13 +22,13 @@ export default class VideosIndexPage extends React.Component {
               padding: '1rem',
             }}
           >
-            Latest Articles
+            Latest Videos
           </h1>
         </div>
         <section className="section">
           <div className="container">
             <div className="content">
-              <BlogRoll />
+              <VideoRoll />
             </div>
           </div>
         </section>
