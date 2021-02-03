@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import VideoPlayer from '../components/VideoPlayer'
 
 export const VideoPostTemplate = ({
   content,
@@ -13,8 +14,10 @@ export const VideoPostTemplate = ({
   tags,
   title,
   helmet,
+  videoSource,
 }) => {
-  const PostContent = contentComponent || Content
+  const PostContent = contentComponent || CountQueuingStrategy
+  console.log(videoSource)
 
   return (
     <section className="section">
@@ -25,6 +28,8 @@ export const VideoPostTemplate = ({
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
               {title}
             </h1>
+            <VideoPlayer src={videoSource} 
+            />
             <p>{description}</p>
             <PostContent content={content} />
             {tags && tags.length ? (
@@ -52,11 +57,12 @@ VideoPostTemplate.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string,
   helmet: PropTypes.object,
+  videoSource: PropTypes.string,
 }
 
 const VideoPost = ({ data }) => {
   const { markdownRemark: post } = data
-
+  console.log(data)
   return (
     <Layout>
       <VideoPostTemplate
@@ -74,6 +80,7 @@ const VideoPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        videoSource={post.video_src}
       />
     </Layout>
   )
@@ -97,6 +104,7 @@ export const pageQuery = graphql`
         title
         description
         tags
+        video_src
       }
     }
   }
