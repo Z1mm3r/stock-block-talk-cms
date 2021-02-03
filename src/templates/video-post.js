@@ -16,7 +16,8 @@ export const VideoPostTemplate = ({
   helmet,
   videoSource,
 }) => {
-  const PostContent = contentComponent || Content
+  const PostContent = contentComponent || CountQueuingStrategy
+  console.log(videoSource)
 
   return (
     <section className="section">
@@ -61,7 +62,7 @@ VideoPostTemplate.propTypes = {
 
 const VideoPost = ({ data }) => {
   const { markdownRemark: post } = data
-
+  console.log(data)
   return (
     <Layout>
       <VideoPostTemplate
@@ -79,6 +80,7 @@ const VideoPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        videoSource={post.video_src}
       />
     </Layout>
   )
@@ -102,6 +104,7 @@ export const pageQuery = graphql`
         title
         description
         tags
+        video_src
       }
     }
   }
