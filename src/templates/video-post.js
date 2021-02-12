@@ -6,6 +6,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import VideoPlayer from '../components/VideoPlayer'
+import VideoRollVertical from '../components/VideoRollVertical'
 
 export const VideoPostTemplate = ({
   content,
@@ -17,19 +18,19 @@ export const VideoPostTemplate = ({
   videoSource,
 }) => {
   const PostContent = contentComponent || CountQueuingStrategy
-  console.log(videoSource)
 
   return (
-    <section className="section">
+    <section className="section article-body">
       {helmet || ''}
       <div className="container content">
         <div className="columns">
-          <div className="column is-10 is-offset-1">
+          <div className="column is-7 is-offset-1">
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
               {title}
             </h1>
-            <VideoPlayer src={videoSource} 
-            />
+            <div className="video-post-video-container">
+              <VideoPlayer src={videoSource} />
+            </div>
             <p>{description}</p>
             <PostContent content={content} />
             {tags && tags.length ? (
@@ -44,6 +45,9 @@ export const VideoPostTemplate = ({
                 </ul>
               </div>
             ) : null}
+          </div>
+          <div className="column is-3 is-offset-1 ">
+            <VideoRollVertical/>
           </div>
         </div>
       </div>
@@ -62,7 +66,6 @@ VideoPostTemplate.propTypes = {
 
 const VideoPost = ({ data }) => {
   const { markdownRemark: post } = data
-  console.log(data)
   return (
     <Layout>
       <VideoPostTemplate
@@ -80,7 +83,7 @@ const VideoPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
-        videoSource={post.video_src}
+        videoSource={post.frontmatter.video_src}
       />
     </Layout>
   )

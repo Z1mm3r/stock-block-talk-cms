@@ -63,6 +63,11 @@ const Footer = class extends React.Component {
                         About
                       </Link>
                     </li>
+                    <li>
+                      <small> Copyright &copy;2021 StockBlockTalk </small> 
+                      <br/>
+                      <small> All Rights Reserved</small>
+                    </li>
                   </ul>
                 </section>
               </div>

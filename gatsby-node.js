@@ -2,6 +2,7 @@ const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
+const { paginate } =  require('gatsby-awesome-pagination');
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
@@ -30,6 +31,35 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     const posts = result.data.allMarkdownRemark.edges
+    let videos= []
+    let articles = []
+    
+    posts.forEach((edge) => {
+      switch(edge.node.frontmatter.templateKey){
+        case "video-post":
+          videos.push(edge)
+          break;
+        case "blog-post":
+          articles.push(edge)
+          break;
+        default:
+          console.log('Error during post count. Cannot find valid template Type.')
+          break;
+      }
+    })
+
+    const postsPerPageList = 2
+    const numArticlePages = Math.ceil(articles.length / postsPerPageList)
+    const numVideoPages = Math.ceil(videos.length / postsPerPageList)
+
+    paginate({
+      createPage,
+      items: articles,
+      itemsPerPage: postsPerPageList,
+      pathPrefix: '/articles',
+      component: path.resolve(`src/templates/articles-list.js`)
+
+    })
 
     posts.forEach((edge) => {
       const id = edge.node.id

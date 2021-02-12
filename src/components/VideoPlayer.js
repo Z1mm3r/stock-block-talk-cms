@@ -1,15 +1,15 @@
 import React from "react"
 const VideoPlayer = ({ src, title, ...props }) => (
-  <div className="video">
-    <iframe
-      src={src}
-      title={title}
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      frameBorder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowFullScreen
-    />
+  <div className="video-container">
+    <div className="video">
+      <iframe
+        className="video-only"
+        src={src}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        frameBorder="0"
+        allowFullScreen
+      />
+    </div>
   </div>
 )
 export default VideoPlayer
