@@ -4,7 +4,7 @@ title: "Gamestop Squeeze: Taking a Look at the Robinhood and Melvin Capital
   Connection"
 video_src: https://www.youtube.com/embed/pibJ0v0oT2g
 featuredimage: /img/stockgraphic.jpg
-date: 2021-02-03T06:03:56.741Z
+date: 2021-01-30T06:03:56.741Z
 featuredpost: false
 video-src: https://youtu.be/pibJ0v0oT2g
 description: Various reports have come out discussing the links between
