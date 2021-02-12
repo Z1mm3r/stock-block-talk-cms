@@ -14,6 +14,13 @@ $body-color: #333
 $black: #2b2523
 $light: #efefef
 
+.navbar
+  border-bottom: 2px solid $black
+  position: fixed !important
+  width: 100%
+  top: 0
+
+
 .navbar .navbar-menu
   box-shadow:none !important
 
@@ -121,6 +128,27 @@ $menu-label-color: $white-ter
     vertical-align: middle
     display: inline
 
+
+//Article Formatting
+.article-body
+  margin-top: 2rem
+//Snippets
+.post-snippet-body
+  padding: 0 !important
+.post-snippet-meta
+  width: 100%
+  text-align: center
+.post-snippet-thumbnail
+  flex-basis: 100%;
+  margin: 0 !important
+.post-snippet header
+  display: flex;
+  margin-bottom: 0;
+
+//Vertical Roll Reccomendations
+.vertical-roll-container
+  border: 2px solid black
+
 // blog roll
 .blog-list-item.is-featured
   background-color: #d6400033;
@@ -128,10 +156,30 @@ $menu-label-color: $white-ter
   display: flex;
   margin-bottom: 1em;
 .blog-list-item .featured-thumbnail
-  flex-basis: 35%;
+  flex-basis: 100%;
   margin: 0 1.5em 0 0;
 
+// Pagination
+.pagination-container
+  text-align: center;
 
+//Video Player
+.video-post-video-container
+  width: 100%
+.video-only
+  overflow: visible
+  width: 100%
+  height: 100%
+.video
+  position: absolute
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+.video-container 
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
 @import "~bulma"
 
 
