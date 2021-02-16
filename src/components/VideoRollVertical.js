@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
-import VideoSnippet from './VideoSnippet';
+import VideoSnippet from './VideoSnippet'
+import Divider from './Divider'
 
 class VideoRollVertical extends React.Component {
   render() {
@@ -10,10 +11,16 @@ class VideoRollVertical extends React.Component {
     const { edges: posts } = data.allMarkdownRemark
     return (
       <div className="columns is-multiline vertical-roll-container">
-        <p>Top Videos</p>
+        <div>
+            <p>Top Videos</p>
+        </div>
+        <br/>
         {posts &&
           posts.map(({ node: post }) => (
-            <VideoSnippet data= {post} />
+            <>
+                <Divider/>
+                <VideoSnippet data= {post} />
+            </>
           ))}
       </div>
     )
