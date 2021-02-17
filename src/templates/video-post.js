@@ -56,6 +56,7 @@ export const VideoPostTemplate = ({
 }
 
 VideoPostTemplate.propTypes = {
+  postID: PropTypes.string,
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
@@ -69,6 +70,7 @@ const VideoPost = ({ data }) => {
   return (
     <Layout>
       <VideoPostTemplate
+        postID={post.id}
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
