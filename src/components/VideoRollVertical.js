@@ -21,7 +21,7 @@ class VideoRollVertical extends React.Component {
         return (
         <div className="columns is-multiline vertical-roll-container">
             <div>
-                <h4>Trending Videos</h4>
+                <h4 className={"vertical-roll-header"}>Most Recent Videos</h4>
             </div>
             {videos &&
             videos.map(({ node: post }) => (
