@@ -39,7 +39,7 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Source", name: "video_src", widget: "string"}
       - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
-      - {label: "Body", name: "body", widget: "markdown", required: "false"}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
       - {label: "Tags", name: "tags", widget: "list"}
   
 
