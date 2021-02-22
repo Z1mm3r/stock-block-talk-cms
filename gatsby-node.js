@@ -4,12 +4,22 @@ const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 const { paginate } =  require('gatsby-awesome-pagination');
 
+//TODO move this to aconst file
+const postsPerPageList = 2
+const reccomendedVideoCount = 4
+const reccomendedArticleCount = 4
+
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
   return graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      allMarkdownRemark(
+        limit: 1000
+        sort: { order: DESC, fields: [frontmatter___date] }
+      ) 
+      {
         edges {
           node {
             id
@@ -31,9 +41,11 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     const posts = result.data.allMarkdownRemark.edges
-    let videos= []
+    let videos = []
     let articles = []
+    let otherPages = []
     
+    //split videos & articles
     posts.forEach((edge) => {
       switch(edge.node.frontmatter.templateKey){
         case "video-post":
@@ -43,12 +55,16 @@ exports.createPages = ({ actions, graphql }) => {
           articles.push(edge)
           break;
         default:
-          console.log('Error during post count. Cannot find valid template Type.')
+          otherPages.push(edge)
           break;
       }
     })
 
-    const postsPerPageList = 2
+    //Get Our Newest Videos/Articles
+    let newVideos = videos.slice(0,reccomendedVideoCount)
+    let newArticles = articles.slice(0,reccomendedArticleCount)
+
+    //Pagination
     const numArticlePages = Math.ceil(articles.length / postsPerPageList)
     const numVideoPages = Math.ceil(videos.length / postsPerPageList)
 
@@ -61,7 +77,8 @@ exports.createPages = ({ actions, graphql }) => {
 
     })
 
-    posts.forEach((edge) => {
+    //Create Our Keys -> Video, Articles, Rest of Site
+    videos.forEach((edge) => {
       const id = edge.node.id
       createPage({
         path: edge.node.fields.slug,
@@ -76,6 +93,54 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
 
+    articles.forEach((edge) => {
+      const id = edge.node.id
+      createPage({
+        path: edge.node.fields.slug,
+        tags: edge.node.frontmatter.tags,
+        component: path.resolve(
+          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+        ),
+        // additional data can be passed via context
+        context: {
+          id,
+        },
+      })
+    })
+
+    otherPages.forEach((edge) => {
+      const id = edge.node.id
+      createPage({
+        path: edge.node.fields.slug,
+        tags: edge.node.frontmatter.tags,
+        component: path.resolve(
+          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+        ),
+        // additional data can be passed via context
+        context: {
+          id,
+        },
+      })
+    })
+
+    /* OLD Doing all posts the same time.
+    // posts.forEach((edge) => {
+    //   const id = edge.node.id
+    //   createPage({
+    //     path: edge.node.fields.slug,
+    //     tags: edge.node.frontmatter.tags,
+    //     component: path.resolve(
+    //       `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+    //     ),
+    //     // additional data can be passed via context
+    //     context: {
+    //       id,
+    //     },
+    //   })
+    // })
+    */
+    
+
     // Tag pages:
     let tags = []
     // Iterate through each post, putting all found tags into `tags`
@@ -84,6 +149,7 @@ exports.createPages = ({ actions, graphql }) => {
         tags = tags.concat(edge.node.frontmatter.tags)
       }
     })
+    
     // Eliminate duplicate tags
     tags = _.uniq(tags)
 

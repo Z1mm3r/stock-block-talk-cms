@@ -12,13 +12,14 @@ export const VideoPostTemplate = ({
   content,
   contentComponent,
   description,
+  helmet,
   tags,
   title,
-  helmet,
+  postID,
   videoSource,
 }) => {
   const PostContent = contentComponent || CountQueuingStrategy
-
+  console.log('postId',postID)
   return (
     <section className="section article-body">
       {helmet || ''}
@@ -47,7 +48,7 @@ export const VideoPostTemplate = ({
             ) : null}
           </div>
           <div className="column is-3 is-offset-1 ">
-            <VideoRollVertical/>
+            <VideoRollVertical currentId={postID}/>
           </div>
         </div>
       </div>
@@ -56,6 +57,7 @@ export const VideoPostTemplate = ({
 }
 
 VideoPostTemplate.propTypes = {
+  postID: PropTypes.string,
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
@@ -69,6 +71,7 @@ const VideoPost = ({ data }) => {
   return (
     <Layout>
       <VideoPostTemplate
+        postID={post.id}
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}

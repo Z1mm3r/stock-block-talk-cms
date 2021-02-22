@@ -15,7 +15,7 @@ const VideoSnippet = ({ data: post }) => {
     return (
         <div className="is-parent column is-12" key={post.id}>
               <article
-                className={`post-snippet black-border-thin tile is-child box notification post-snippet-body ${
+                className={`post-snippet tile is-child box post-snippet-body ${
                   post.frontmatter.featuredpost ? 'is-featured' : ''
                 }`}
               >
