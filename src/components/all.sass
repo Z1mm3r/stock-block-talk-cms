@@ -139,7 +139,7 @@ $menu-label-color: $white-ter
   width: 100%
   text-align: center
 .post-snippet-thumbnail
-  flex-basis: 100%;
+  flex-basis: 70%;
   margin: 0 !important
 .post-snippet header
   display: flex;
@@ -147,7 +147,11 @@ $menu-label-color: $white-ter
 
 //Vertical Roll Reccomendations
 .vertical-roll-container
-  border: 2px solid black
+  display: block !important
+  text-align: center
+.vertical-roll-header
+  margin-top: 0.8em
+  margin-bottom: 0.8em
 
 // blog roll
 .blog-list-item.is-featured
@@ -180,6 +184,14 @@ $menu-label-color: $white-ter
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
+
+//Divider
+.divider-container
+  width: 90%
+  border-bottom: 1px solid black
+  height: 3px
+  margin: auto
+
 @import "~bulma"
 
 
