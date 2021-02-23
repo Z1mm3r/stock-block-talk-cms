@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ArticlePostTemplate } from '../../templates/blog-post'
+import { ArticlePostTemplate } from '../../templates/article-post'
 
 const ArticlePostPreview = ({ entry, widgetFor }) => {
   const tags = entry.getIn(['data', 'tags'])
@@ -14,7 +14,7 @@ const ArticlePostPreview = ({ entry, widgetFor }) => {
   )
 }
 
-BlogPostPreview.propTypes = {
+ArticlePostPreview.propTypes = {
   entry: PropTypes.shape({
     getIn: PropTypes.func,
   }),
