@@ -4,7 +4,6 @@ import Layout from '../components/Layout'
 import BlogRollV2 from '../components/BlogRollV2'
 import { Link } from "gatsby"
 
-
 const ArticlesListTemplate = (props ) => {
     const {data} = {...props}
     return (
@@ -64,7 +63,6 @@ const ArticlesListTemplate = (props ) => {
                   title
                   templateKey
                   date(formatString: "MMMM DD, YYYY")
-                  featuredpost
                   featuredimage {
                     childImageSharp {
                       fluid(maxWidth: 120, quality: 100) {
