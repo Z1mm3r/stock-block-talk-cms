@@ -51,8 +51,11 @@ exports.createPages = ({ actions, graphql }) => {
         case "video-post":
           videos.push(edge)
           break;
-        case "blog-post":
+        case "article-post":
           articles.push(edge)
+          break;
+        case "blog-post":
+          otherPages.push(edge)
           break;
         default:
           otherPages.push(edge)
