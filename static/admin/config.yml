@@ -29,7 +29,7 @@ collections:
 
   - name: "article"
     label: "Article"
-    folder: "src/pages/Article"
+    folder: "src/pages/articles"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
