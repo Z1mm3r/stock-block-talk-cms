@@ -50,7 +50,7 @@ const ArticlesListTemplate = (props ) => {
             sort: { fields: [frontmatter___date], order: DESC }
             skip: $skip
             limit: $limit 
-            filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+            filter: { frontmatter: { templateKey: { eq: "article-post" } } }
           ) {
             edges {
               node {
