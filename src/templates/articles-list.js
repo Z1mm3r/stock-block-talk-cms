@@ -6,6 +6,7 @@ import { Link } from "gatsby"
 
 const ArticlesListTemplate = (props ) => {
     const {data} = {...props}
+    console.log('data',data)
     return (
       <Layout>
         <div
