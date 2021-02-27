@@ -4,9 +4,10 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Features from '../components/Features'
-import BlogRoll from '../components/BlogRoll'
+import BlogRollV2 from '../components/BlogRollV2'
 
 export const IndexPageTemplate = ({
+  articles,
   image,
   title,
   heading,
@@ -16,6 +17,7 @@ export const IndexPageTemplate = ({
   intro,
 }) => (
   <div>
+    {console.log('artiKLAS',articles)}
     <div
       className="full-width-image margin-top-0"
       style={{
@@ -71,7 +73,7 @@ export const IndexPageTemplate = ({
             <div className="column is-10 is-offset-1">
               
               <div className="content">
-                <div className="content">
+                {/* <div className="content">
                   <div className="tile">
                     <h1 className="title">{mainpitch.title}</h1>
                   </div>
@@ -86,27 +88,27 @@ export const IndexPageTemplate = ({
                     </h3>
                     <p>{description}</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="column is-12">
                   <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
                     Latest stories
                   </h3>
-                  <BlogRoll />
+                  <BlogRollV2 articles={articles} /> 
                   <div className="column is-12 has-text-centered">
-                    <Link className="btn" to="/blog">
+                    <Link className="btn" to="/articles">
                       Read more
                     </Link>
                   </div>
                 </div>
                 
-                <Features gridItems={intro.blurbs} />
+                {/* <Features gridItems={intro.blurbs} />
                 <div className="columns">
                   <div className="column is-12 has-text-centered">
                     <Link className="btn" to="/products">
                       See all products
                     </Link>
                   </div>
-                </div>
+                </div> */}
                 
               </div>
             </div>
@@ -118,6 +120,7 @@ export const IndexPageTemplate = ({
 )
 
 IndexPageTemplate.propTypes = {
+  articles: PropTypes.array,
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   heading: PropTypes.string,
@@ -131,10 +134,12 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
-
+  console.log(data)
+  console.log(data.articles)
   return (
     <Layout>
       <IndexPageTemplate
+        articles={ data.articles }
         image={frontmatter.image}
         title={frontmatter.title}
         heading={frontmatter.heading}
@@ -149,6 +154,7 @@ const IndexPage = ({ data }) => {
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
+    articles: PropTypes.array,
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object,
     }),
@@ -158,7 +164,36 @@ IndexPage.propTypes = {
 export default IndexPage
 
 export const pageQuery = graphql`
+
   query IndexPageTemplate {
+    articles: allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      filter: { frontmatter: { templateKey: { eq: "article-post" } } }
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 400)
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            templateKey
+            date(formatString: "MMMM DD, YYYY")
+            featuredpost
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 120, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         title
