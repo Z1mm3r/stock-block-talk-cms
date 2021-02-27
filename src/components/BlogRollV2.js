@@ -8,8 +8,10 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 //its own staticQuery
 class BlogRollV2 extends React.Component {
   render() {
-    const { data } = this.props
-    const { edges: posts } = data.allMarkdownRemark
+
+    const { data, articles } = this.props
+
+    const { edges: posts } =  data ? data.allMarkdownRemark : articles ? articles : null
 
     return (
       <div className="columns is-multiline">
