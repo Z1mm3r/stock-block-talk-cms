@@ -9,15 +9,20 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 class BlogRollV2 extends React.Component {
   render() {
 
-    const { data, articles } = this.props
+    const { 
+      data,
+      articles,
+      perRow = 2,
+    } = this.props
 
+    const size = Math.floor(12/perRow)
     const { edges: posts } =  data ? data.allMarkdownRemark : articles ? articles : null
 
     return (
       <div className="columns is-multiline">
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="is-parent column is-6" key={post.id}>
+            <div className={`is-parent column is-${size}`} key={post.id}>
               <article
                 className={`blog-list-item black-border-thin tile is-child box notification ${
                   post.frontmatter.featuredpost ? 'is-featured' : ''

@@ -19,7 +19,6 @@ export const VideoPostTemplate = ({
   videoSource,
 }) => {
   const PostContent = contentComponent || CountQueuingStrategy
-  console.log('postId',postID)
   return (
     <section className="section article-body">
       {helmet || ''}
@@ -48,6 +47,9 @@ export const VideoPostTemplate = ({
             ) : null}
           </div>
           <div className="column is-3 is-offset-1 ">
+            <div className="has-text-centered">
+                <h4 className={"vertical-roll-header"}>Most Recent Videos</h4>
+            </div>
             <VideoRollVertical currentId={postID}/>
           </div>
         </div>

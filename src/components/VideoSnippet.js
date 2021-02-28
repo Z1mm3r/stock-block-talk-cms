@@ -4,13 +4,6 @@ import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
 import {linkToThumbnail} from '../utils/YoutubeHelpers'
 
-const testFunction = (frontmatter) => {
-    debugger
-    console.log(frontmatter)
-    console.log('uhm what')
-    return linkToThumbnail(frontmatter.video_src ? frontmatter.video_src : ' ')
-}
-
 const VideoSnippet = ({ data: post }) => {
     return (
         <div className="is-parent column is-12" key={post.id}>

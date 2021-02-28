@@ -5,6 +5,7 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Features from '../components/Features'
 import BlogRollV2 from '../components/BlogRollV2'
+import VideoRollHorizontal from '../components/VideoRollHorizontal'
 
 export const IndexPageTemplate = ({
   articles,
@@ -15,9 +16,9 @@ export const IndexPageTemplate = ({
   mainpitch,
   description,
   intro,
+  videos,
 }) => (
   <div>
-    {console.log('artiKLAS',articles)}
     <div
       className="full-width-image margin-top-0"
       style={{
@@ -72,7 +73,7 @@ export const IndexPageTemplate = ({
           <div className="columns">
             <div className="column is-10 is-offset-1">
               
-              <div className="content">
+              <div className="columns content">
                 {/* <div className="content">
                   <div className="tile">
                     <h1 className="title">{mainpitch.title}</h1>
@@ -89,14 +90,27 @@ export const IndexPageTemplate = ({
                     <p>{description}</p>
                   </div>
                 </div> */}
-                <div className="column is-12">
+                <div className="column is-6">
                   <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
                     Latest stories
                   </h3>
-                  <BlogRollV2 articles={articles} /> 
+                  <BlogRollV2 articles={articles} perRow={1} /> 
                   <div className="column is-12 has-text-centered">
                     <Link className="btn" to="/articles">
                       Read more
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="column is-6">
+                  <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
+                    Latest Videos
+                  </h3>
+                  <VideoRollHorizontal data={videos} count={2}/>
+                  <VideoRollHorizontal data={videos} count={2} start={2}/>
+                  <div className="column is-12 has-text-centered">
+                    <Link className="btn" to="/articles">
+                      Watch more
                     </Link>
                   </div>
                 </div>
@@ -130,12 +144,11 @@ IndexPageTemplate.propTypes = {
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
+  videos: PropTypes.array,
 }
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
-  console.log(data)
-  console.log(data.articles)
   return (
     <Layout>
       <IndexPageTemplate
@@ -147,6 +160,7 @@ const IndexPage = ({ data }) => {
         mainpitch={frontmatter.mainpitch}
         description={frontmatter.description}
         intro={frontmatter.intro}
+        videos={ data.videos }
       />
     </Layout>
   )
@@ -158,6 +172,7 @@ IndexPage.propTypes = {
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object,
     }),
+    videos: PropTypes.array,
   }),
 }
 
@@ -179,6 +194,36 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            templateKey
+            date(formatString: "MMMM DD, YYYY")
+            featuredpost
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 120, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    videos: allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 4
+      filter: { frontmatter: { templateKey: { eq: "video-post" } } }
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 400)
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            video_src
             templateKey
             date(formatString: "MMMM DD, YYYY")
             featuredpost
