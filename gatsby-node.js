@@ -5,7 +5,7 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 const { paginate } =  require('gatsby-awesome-pagination');
 
 //TODO move this to a const file
-const postsPerPageList = 2
+const postsPerPageList = 10
 const reccomendedVideoCount = 4
 const reccomendedArticleCount = 4
 
@@ -64,12 +64,11 @@ exports.createPages = ({ actions, graphql }) => {
     })
 
     //Get Our Newest Videos/Articles
+    //Useless??
     let newVideos = videos.slice(0,reccomendedVideoCount)
     let newArticles = articles.slice(0,reccomendedArticleCount)
 
     //Pagination
-    const numArticlePages = Math.ceil(articles.length / postsPerPageList)
-    const numVideoPages = Math.ceil(videos.length / postsPerPageList)
 
     paginate({
       createPage,
@@ -77,6 +76,15 @@ exports.createPages = ({ actions, graphql }) => {
       itemsPerPage: postsPerPageList,
       pathPrefix: '/articles',
       component: path.resolve(`src/templates/articles-list.js`)
+
+    })
+
+    paginate({
+      createPage,
+      items: videos,
+      itemsPerPage: postsPerPageList,
+      pathPrefix: '/videos',
+      component: path.resolve(`src/templates/video-list.js`)
 
     })
 

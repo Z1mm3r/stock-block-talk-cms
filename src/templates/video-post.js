@@ -51,7 +51,7 @@ export const VideoPostTemplate = ({
             <div className="has-text-centered">
                 <h4 className={"vertical-roll-header"}>Most Recent Videos</h4>
             </div>
-            <VideoRollVertical currentId={postID} data={reccomendedVideos} />
+            <VideoRollVertical currentId={postID} data={reccomendedVideos} maxVideos={3} />
           </div>
         </div>
       </div>
