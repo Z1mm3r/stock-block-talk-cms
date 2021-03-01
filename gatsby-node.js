@@ -4,7 +4,7 @@ const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 const { paginate } =  require('gatsby-awesome-pagination');
 
-//TODO move this to aconst file
+//TODO move this to a const file
 const postsPerPageList = 2
 const reccomendedVideoCount = 4
 const reccomendedArticleCount = 4

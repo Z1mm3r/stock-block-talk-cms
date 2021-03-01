@@ -90,11 +90,13 @@ export const IndexPageTemplate = ({
                     <p>{description}</p>
                   </div>
                 </div> */}
-                <div className="column is-6">
+                <div className="column is-6 index-content">
                   <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
                     Latest stories
                   </h3>
-                  <BlogRollV2 articles={articles} perRow={1} /> 
+                  <div className="column-body"> 
+                    <BlogRollV2 articles={articles} perRow={1} /> 
+                  </div>
                   <div className="column is-12 has-text-centered">
                     <Link className="btn" to="/articles">
                       Read more
@@ -102,12 +104,15 @@ export const IndexPageTemplate = ({
                   </div>
                 </div>
 
-                <div className="column is-6">
+                <div className="column is-6 index-content ">
                   <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
                     Latest Videos
                   </h3>
-                  <VideoRollHorizontal data={videos} count={2}/>
-                  <VideoRollHorizontal data={videos} count={2} start={2}/>
+                  <div className="column-body">
+                    <VideoRollHorizontal data={videos} count={2} smallPadding/>
+                    <VideoRollHorizontal data={videos} count={2} start={2} smallPadding/>
+                    <VideoRollHorizontal data={videos} count={2} start={4} smallPadding/>
+                  </div>
                   <div className="column is-12 has-text-centered">
                     <Link className="btn" to="/articles">
                       Watch more
@@ -211,7 +216,7 @@ export const pageQuery = graphql`
 
     videos: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      limit: 4
+      limit: 6
       filter: { frontmatter: { templateKey: { eq: "video-post" } } }
     ) {
       edges {

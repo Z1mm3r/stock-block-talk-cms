@@ -23,11 +23,14 @@ export const ArticlePostTemplate = ({
       {helmet || ''}
       <div className="container content">
         <div className="columns">
-          <div className="column is-8 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
+          <div className="column is-7 is-offset-1">
+            <h1 className="title is-size-2 has-text-weight-bold is-bold-light article-title has-text-centered">
               {title}
             </h1>
-            <p>{description}</p>
+            <div className="has-text-centered">
+              <p >{description}</p>
+              <br/>
+            </div>
             {featuredImage ? 
                <PreviewCompatibleImage
                imageInfo={{
