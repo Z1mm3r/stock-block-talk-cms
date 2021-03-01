@@ -4,13 +4,16 @@ import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
 import {linkToThumbnail} from '../utils/YoutubeHelpers'
 
-const VideoSnippet = ({ data: post }) => {
+const VideoSnippet = ({ 
+  data: post,
+  noRaise = false 
+}) => {
     return (
         <div className="is-parent column is-12" key={post.id}>
               <article
-                className={`post-snippet tile is-child box post-snippet-body ${
-                  post.frontmatter.featuredpost ? 'is-featured' : ''
-                }`}
+                className={`post-snippet tile is-child ${noRaise ? '' : 'box'} 
+                  post-snippet-body ${post.frontmatter.featuredpost ? 'is-featured' : ''}`
+                }
               >
                 <header>
                   <p className="post-snippet-meta">
