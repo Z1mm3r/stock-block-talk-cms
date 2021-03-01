@@ -17,6 +17,7 @@ export const VideoPostTemplate = ({
   title,
   postID,
   videoSource,
+  reccomendedVideos,
 }) => {
   const PostContent = contentComponent || CountQueuingStrategy
   return (
@@ -50,7 +51,7 @@ export const VideoPostTemplate = ({
             <div className="has-text-centered">
                 <h4 className={"vertical-roll-header"}>Most Recent Videos</h4>
             </div>
-            <VideoRollVertical currentId={postID}/>
+            <VideoRollVertical currentId={postID} data={reccomendedVideos} />
           </div>
         </div>
       </div>
@@ -66,10 +67,11 @@ VideoPostTemplate.propTypes = {
   title: PropTypes.string,
   helmet: PropTypes.object,
   videoSource: PropTypes.string,
+  reccomendedVideos: PropTypes.array,
 }
 
 const VideoPost = ({ data }) => {
-  const { markdownRemark: post } = data
+  const { markdownRemark: post, videos: reccomendedVideos } = data
   return (
     <Layout>
       <VideoPostTemplate
@@ -89,6 +91,7 @@ const VideoPost = ({ data }) => {
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
         videoSource={post.frontmatter.video_src}
+        reccomendedVideos={reccomendedVideos}
       />
     </Layout>
   )
@@ -115,5 +118,36 @@ export const pageQuery = graphql`
         video_src
       }
     }
+
+    videos: allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 6
+      filter: { frontmatter: { templateKey: { eq: "video-post" } } }
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 400)
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            video_src
+            templateKey
+            date(formatString: "MMMM DD, YYYY")
+            featuredpost
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 120, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
   }
 `

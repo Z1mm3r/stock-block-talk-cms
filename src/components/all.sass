@@ -130,6 +130,8 @@ $menu-label-color: $white-ter
 
 
 //Article Formatting
+.article-title
+  margin-top: 3rem
 .article-body
   margin-top: 2rem
 //Snippets
@@ -145,13 +147,19 @@ $menu-label-color: $white-ter
   display: flex;
   margin-bottom: 0;
 
+
 //Vertical Roll Reccomendations
 .vertical-roll-container
   display: block !important
-  text-align: center
+  text-align: centerx
 .vertical-roll-header
   margin-top: 0.8em
   margin-bottom: 0.8em
+
+//padding
+.small-padding
+  padding-top: .15rem
+  padding-bottom: .15rem 
 
 // blog roll
 .blog-list-item.is-featured
@@ -193,6 +201,16 @@ $menu-label-color: $white-ter
   margin: auto
 
 @import "~bulma"
+
+.index-content
+  display: flex
+  flex-direction: column
+
+  .column-body
+    height: 100%
+
+.snippet-container
+  display: flex
 
 
 // responsiveness
