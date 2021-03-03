@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import Layout from '../components/Layout'
-import BlogRollV2 from '../components/BlogRollV2'
 import VideoRollVertical from '../components/VideoRollVertical'
+import VideoRollHorizontal from '../components/VideoRollHorizontal'
 import { Link } from "gatsby"
 
 const VideoListTemplate = (props ) => {
@@ -32,7 +32,11 @@ const VideoListTemplate = (props ) => {
         <section className="section">
           <div className="container sub-index-content">
             <div className="content">
-              {/* <BlogRollV2 data={data} /> */}
+              <div className="columns">
+                <VideoRollHorizontal data={videos} start={0} count={2}/>
+                <VideoRollHorizontal data={videos} start={2} count={2}/>
+                <VideoRollHorizontal data={videos} start={4} count={2}/>
+              </div>
               <VideoRollVertical data={videos} noDivider noRaise/>
             </div>
             <div className="pagination-container">
