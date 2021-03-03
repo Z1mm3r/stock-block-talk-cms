@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import Layout from '../components/Layout'
-import VideoRollVertical from '../components/VideoRollVertical'
 import VideoRollHorizontal from '../components/VideoRollHorizontal'
 import { Link } from "gatsby"
 
@@ -9,6 +8,19 @@ const VideoListTemplate = (props ) => {
     const {data} = {...props}
     const {videos} = {...data}
     console.log(videos)
+
+    const renderVideoRolls = (data) =>{
+      let output = []
+      for(let i = 0; i < data.edges.length; i += 2){
+        output.push(
+          <div className="column is-10 is-offset-1">
+            <VideoRollHorizontal data={videos} start ={i} count={2}/>
+          </div>
+        )
+      }
+      return output
+    }
+
     return (
       <Layout>
         <div
@@ -32,12 +44,9 @@ const VideoListTemplate = (props ) => {
         <section className="section">
           <div className="container sub-index-content">
             <div className="content">
-              <div className="columns">
-                <VideoRollHorizontal data={videos} start={0} count={2}/>
-                <VideoRollHorizontal data={videos} start={2} count={2}/>
-                <VideoRollHorizontal data={videos} start={4} count={2}/>
+              <div className="columns is-multiline">
+               {renderVideoRolls(videos)}
               </div>
-              <VideoRollVertical data={videos} noDivider noRaise/>
             </div>
             <div className="pagination-container">
                 {props.pageContext.previousPagePath ? <Link to={props.pageContext.previousPagePath}>Previous Videos</Link> : null}
