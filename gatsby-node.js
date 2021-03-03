@@ -5,7 +5,7 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 const { paginate } =  require('gatsby-awesome-pagination');
 
 //TODO move this to a const file
-const postsPerPageList = 10
+const postsPerPageList = 4
 const reccomendedVideoCount = 4
 const reccomendedArticleCount = 4
 
