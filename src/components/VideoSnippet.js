@@ -16,8 +16,8 @@ const VideoSnippet = ({
                   post.frontmatter.featuredpost ? 'is-featured' : ''
                   }`}
               >
-                <header>
-                  <div className={"columns is-multiline"}>
+                <header className="video-snippet-header">
+                  <div className={"columns is-multiline snippet-wrapper-one"}>
                     <div className="column is-12 post-snippet-header">
 
                     <p className="post-snippet-meta">
@@ -29,7 +29,7 @@ const VideoSnippet = ({
                       </Link>
                     </p>
                     </div>
-                  <div className="column is-12">
+                  <div className="column is-12 snippet-wrapper-two">
                     <div>
                       <div>
                       <p className="post-snippet-meta">
