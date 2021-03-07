@@ -16,9 +16,9 @@ export default class VideoRollHorizontal extends React.Component {
         const videos =  currentId ? posts.filter(({node:post}) => post.id != currentId).slice(start,start + count) : posts.slice(start,start + count)
         const size = Math.floor(12 / count)
         return (
-            <div className="columns horizontal-roll-container-content">
+            <div className="columns tile is-ancestor horizontal-roll-container-content">
                 {videos && videos.map(({ node: post }) => (
-                    <div className={`column is-${size} ${smallPadding ? "smallPadding": ''}`} >
+                    <div className={`tile column is-${size} ${smallPadding ? "smallPadding": ''}`} >
                         <VideoSnippet data= {post} />
                     </div>
                 ))}

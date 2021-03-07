@@ -146,6 +146,8 @@ $menu-label-color: $white-ter
 .post-snippet header
   display: flex;
   margin-bottom: 0;
+.video-snippet-header
+  display: flex;
 
 
 //Vertical Roll Reccomendations
@@ -155,6 +157,12 @@ $menu-label-color: $white-ter
 .vertical-roll-header
   margin-top: 0.8em
   margin-bottom: 0.8em
+//Testing CSS
+.video-snippet-header
+  height: 100%
+  
+
+
 
 //padding
 .small-padding
@@ -202,6 +210,9 @@ $menu-label-color: $white-ter
 
 @import "~bulma"
 
+.sub-index-content
+  width: 70%
+
 .index-content
   display: flex
   flex-direction: column
@@ -211,6 +222,19 @@ $menu-label-color: $white-ter
 
 .snippet-container
   display: flex
+
+//divs directly under header
+.snippet-wrapper-one
+  justify-content: space-between
+  flex-direction: column
+.snippet-wrapper-two
+  flex: 1
+.video-snippet-text-container
+  display: flex
+  flex: 1 !important
+  align-items: center 
+  justify-content: center
+  padding-bottom: 0
 
 
 // responsiveness
