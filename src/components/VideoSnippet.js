@@ -18,9 +18,9 @@ const VideoSnippet = ({
               >
                 <header className="video-snippet-header">
                   <div className={"columns is-multiline snippet-wrapper-one"}>
-                    <div className="column is-12 post-snippet-header">
-
-                    <p className="post-snippet-meta">
+                    <div className="column is-12 video-snippet-text-container">
+                      <div className="video-snippet-text-wrapper">
+                      <p className="post-snippet-meta">
                       <Link
                         className="title has-text-primary is-6 video-snippet-header"
                         to={post.fields.slug}
@@ -28,6 +28,9 @@ const VideoSnippet = ({
                         {post.frontmatter.title}
                       </Link>
                     </p>
+                      </div>
+
+                    
                     </div>
                   <div className="column is-12 snippet-wrapper-two">
                     <div>
