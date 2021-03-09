@@ -1,7 +1,7 @@
 ---
 templateKey: article-post
 title: Gamestop Stock Rockets Again!
-date: 2021-02-28T18:14:15.225Z
+date: 2021-02-24T23:14:00.000Z
 description: |
   Gamestop stock (ticker: GME) doubled in today's trading session.
 featuredimage: /img/gamestoppic.jpg
