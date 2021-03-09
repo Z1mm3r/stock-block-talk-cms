@@ -7,7 +7,6 @@ import { Link } from "gatsby"
 const VideoListTemplate = (props ) => {
     const {data} = {...props}
     const {videos} = {...data}
-    console.log(videos)
 
     const renderVideoRolls = (data) =>{
       let output = []
