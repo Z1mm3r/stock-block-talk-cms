@@ -24,6 +24,8 @@ $light: #efefef
 .navbar .navbar-menu
   box-shadow:none !important
 
+
+
 .content .taglist
   list-style: none
   margin-bottom: 0
@@ -149,6 +151,15 @@ $menu-label-color: $white-ter
 .video-snippet-header
   display: flex;
 
+.recommended-articles-container
+  display : flex
+  flex-direction: column
+  align-content: space-between 
+.recommended-articles-header
+  text-align: center 
+  font-size: 1.5rem 
+  padding-top: 50%
+
 
 //Vertical Roll Reccomendations
 .vertical-roll-container
@@ -160,6 +171,8 @@ $menu-label-color: $white-ter
 //Testing CSS
 .video-snippet-header
   height: 100%
+
+
   
 
 
@@ -208,7 +221,13 @@ $menu-label-color: $white-ter
   height: 3px
   margin: auto
 
+
+
 @import "~bulma"
+
+
+.article-subtext
+    font-size: 1rem  !important
 
 .sub-index-content
   width: 70%

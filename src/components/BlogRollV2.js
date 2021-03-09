@@ -7,17 +7,25 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 // Blog Roll that is used for paginated pages. Pulls in data from Passed down props instead of
 //its own staticQuery
 class BlogRollV2 extends React.Component {
+
+  filterExcludedID = (excludedID,data) =>{
+    return data.filter(({node: post})=> post.id != excludedID)
+  }
+
   render() {
 
-    const { 
-      data,
+    const {
       articles,
+      data,
+      excludedID,
+      noExcerpt,
       perRow = 2,
     } = this.props
 
     const size = Math.floor(12/perRow)
-    const { edges: posts } =  data ? data.allMarkdownRemark : articles ? articles : null
-
+    let { edges: posts } =  data ? data.allMarkdownRemark : articles ? articles : null
+    posts = excludedID ? (this.filterExcludedID(excludedID,posts)) : posts
+    
     return (
       <div className="columns is-multiline">
         {posts &&
@@ -29,7 +37,7 @@ class BlogRollV2 extends React.Component {
                 }`}
               >
                 <header>
-                  {post.frontmatter.featuredimage ? (
+                  {!noExcerpt ? post.frontmatter.featuredimage ? (
                     <div className="featured-thumbnail">
                       <PreviewCompatibleImage
                         imageInfo={{
@@ -38,7 +46,7 @@ class BlogRollV2 extends React.Component {
                         }}
                       />
                     </div>
-                  ) : null}
+                  ) : null : null}
                   <p className="post-meta">
                     <Link
                       className="title has-text-primary is-size-4"
@@ -46,14 +54,24 @@ class BlogRollV2 extends React.Component {
                     >
                       {post.frontmatter.title}
                     </Link>
-                    <span> &bull; </span>
+                    <span> </span>
                     <span className="subtitle is-size-5 is-block">
-                      {post.frontmatter.date}
+                      &bull; {post.frontmatter.date}
                     </span>
                   </p>
                 </header>
+                {noExcerpt ? (
+                  <div className="featured-thumbnail">
+                  <PreviewCompatibleImage
+                    imageInfo={{
+                      image: post.frontmatter.featuredimage,
+                      alt: `featured image thumbnail for post ${post.frontmatter.title}`,
+                    }}
+                  />
+                </div>
+                ) : null}
                 <p>
-                  {post.excerpt}
+                  {!noExcerpt ? post.excerpt : null}
                   <br />
                   <br />
                   <Link className="button" to={post.fields.slug}>
