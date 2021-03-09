@@ -6,15 +6,19 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import BlogRollV2 from '../components/BlogRollV2';
 
 export const ArticlePostTemplate = ({
   content,
   contentComponent,
+  date,
   description,
   featuredImage,
+  id,
+  helmet,
+  reccomendedArticles,
   tags,
   title,
-  helmet,
 }) => {
   const PostContent = contentComponent || Content
 
@@ -23,13 +27,20 @@ export const ArticlePostTemplate = ({
       {helmet || ''}
       <div className="container content">
         <div className="columns">
-          <div className="column is-7 is-offset-1">
+          <div className="column is-2 side-ad-contianer">
+          </div>
+          <div className="column is-7 ">
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light article-title has-text-centered">
               {title}
             </h1>
             <div className="has-text-centered">
               <p >{description}</p>
-              <br/>
+              <div>
+               <p>
+                 Posted: {date}
+               </p>
+               <br/>
+              </div>
             </div>
             {featuredImage ? 
                <PreviewCompatibleImage
@@ -40,7 +51,7 @@ export const ArticlePostTemplate = ({
              />
              : null
             }
-            <PostContent content={content} />
+            <PostContent content={content} date={date} />
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
                 <h4>Tags</h4>
@@ -53,6 +64,14 @@ export const ArticlePostTemplate = ({
                 </ul>
               </div>
             ) : null}
+          </div>
+          <div className="column is-3">
+            <div className="recommended-articles-container">
+                You May Also Like
+                <BlogRollV2 articles={reccomendedArticles} excludedID={id} perRow={1} noExcerpt>
+
+                </BlogRollV2>
+            </div>
           </div>
         </div>
       </div>
@@ -78,13 +97,16 @@ ArticlePostTemplate.propTypes = {
 
 const ArticlePost = ({ data }) => {
   const { markdownRemark: post } = data
+  const { articles: reccomendedArticles} = data
 
   return (
     <Layout>
       <ArticlePostTemplate
         content={post.html}
         contentComponent={HTMLContent}
+        date={post.frontmatter.date}
         description={post.frontmatter.description}
+        featuredImage={post.frontmatter.featuredimage}
         helmet={
           <Helmet titleTemplate="%s | Blog">
             <title>{`${post.frontmatter.title}`}</title>
@@ -94,7 +116,8 @@ const ArticlePost = ({ data }) => {
             />
           </Helmet>
         }
-        featuredImage={post.frontmatter.featuredimage}
+        id={post.id}
+        reccomendedArticles={reccomendedArticles}
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
       />
@@ -124,6 +147,33 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(maxWidth: 800, quality: 100) {
               ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+    articles: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 3
+      filter: { frontmatter: { templateKey: { eq: "article-post" } } }
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 200)
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            templateKey
+            date(formatString: "MMMM DD, YYYY")
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 120, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
           }
         }
