@@ -9,7 +9,7 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 class BlogRollV2 extends React.Component {
 
   filterExcludedID = (excludedID,data) =>{
-    return data.filter((post)=> post.id != excludedID)
+    return data.filter(({node: post})=> post.id != excludedID)
   }
 
   render() {
@@ -54,9 +54,9 @@ class BlogRollV2 extends React.Component {
                     >
                       {post.frontmatter.title}
                     </Link>
-                    <span> &bull; </span>
+                    <span> </span>
                     <span className="subtitle is-size-5 is-block">
-                      {post.frontmatter.date}
+                      &bull; {post.frontmatter.date}
                     </span>
                   </p>
                 </header>

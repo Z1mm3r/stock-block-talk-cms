@@ -68,6 +68,7 @@ export const ArticlePostTemplate = ({
           <div className="column is-3">
             <div className="recommended-articles-container">
                 You May Also Like
+                {console.log('id',id)}
                 <BlogRollV2 articles={reccomendedArticles} excludedID={id} perRow={1} noExcerpt>
 
                 </BlogRollV2>
