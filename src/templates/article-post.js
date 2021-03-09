@@ -34,7 +34,7 @@ export const ArticlePostTemplate = ({
               {title}
             </h1>
             <div className="has-text-centered">
-              <p >{description}</p>
+              <h2 className="article-subtext">{description}</h2>
               <div>
                <p>
                  Posted: {date}
@@ -67,8 +67,9 @@ export const ArticlePostTemplate = ({
           </div>
           <div className="column is-3">
             <div className="recommended-articles-container">
-                You May Also Like
-                {console.log('id',id)}
+              <div className="recommended-articles-header">
+                <p>You May Also Like</p>
+              </div>
                 <BlogRollV2 articles={reccomendedArticles} excludedID={id} perRow={1} noExcerpt>
 
                 </BlogRollV2>

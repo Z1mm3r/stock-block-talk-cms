@@ -9,7 +9,9 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 class BlogRollV2 extends React.Component {
 
   filterExcludedID = (excludedID,data) =>{
-    return data.filter(({node: post})=> post.id != excludedID)
+    //todo for now
+    return data
+    //return data.filter(({node: post})=> post.id != excludedID)
   }
 
   render() {
