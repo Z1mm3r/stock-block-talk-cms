@@ -116,6 +116,8 @@ const ArticlePost = ({ data }) => {
               name="description"
               content={`${post.frontmatter.description}`}
             />
+            <meta property="og:title" content={post.frontmatter.title} />
+
           </Helmet>
         }
         id={post.id}
