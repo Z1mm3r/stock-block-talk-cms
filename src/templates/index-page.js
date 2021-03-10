@@ -188,6 +188,7 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     articles: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 2
       filter: { frontmatter: { templateKey: { eq: "article-post" } } }
     ) {
       edges {
