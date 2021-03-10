@@ -1,7 +1,7 @@
 ---
 templateKey: article-post
 title: GME Continues Going Up! Will it hit $300 this week?
-date: 2021-03-10T04:33:00.147Z
+date: 2021-03-09T23:30:00.147Z
 description: GameStop is starting the week off strong, gaining 70% in the first
   two days of trading.
 featuredimage: /img/gamestop-image.jpeg
