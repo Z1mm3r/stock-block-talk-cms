@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Features from '../components/Features'
 import BlogRollV2 from '../components/BlogRollV2'
 import VideoRollHorizontal from '../components/VideoRollHorizontal'
 

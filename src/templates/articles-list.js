@@ -6,12 +6,20 @@ import { Link } from "gatsby"
 
 const ArticlesListTemplate = (props ) => {
     const {data} = {...props}
+    console.log('data',data)
+    const { frontmatter }  = data.markdownRemark
+    console.log('frontmatter',frontmatter)
+    console.log('image-look', frontmatter.image)
+    const  image  = frontmatter.image
+    console.log('image',image)
     return (
       <Layout>
         <div
           className="full-width-image-container margin-top-0"
           style={{
-            backgroundImage: `url('/img/articles-header.jpg')`,
+            backgroundImage: `url(${
+              !!image.childImageSharp ? image.childImageSharp.fluid.src : image
+            })`,
           }}
         >
           <h1
@@ -46,6 +54,19 @@ const ArticlesListTemplate = (props ) => {
   
   export const pageQuery = graphql`
         query ($skip: Int!, $limit: Int!) {
+
+          markdownRemark(frontmatter: { templateKey: { eq: "articles-list" } }) {
+            frontmatter {
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 2048, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+
           allMarkdownRemark(
             sort: { fields: [frontmatter___date], order: DESC }
             skip: $skip
