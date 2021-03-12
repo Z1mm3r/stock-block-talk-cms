@@ -3,6 +3,7 @@ import * as React from 'react'
 import Layout from '../components/Layout'
 import BlogRollV2 from '../components/BlogRollV2'
 import { Link } from "gatsby"
+import {BgImage} from '../components/BgImage'
 
 const ArticlesListTemplate = (props ) => {
     const {data} = {...props}
@@ -14,14 +15,24 @@ const ArticlesListTemplate = (props ) => {
     console.log('image',image)
     return (
       <Layout>
-        <div
+        <BgImage
+          Tag="section"
+          className="full-width-image-container margin-top-0"
+          fluid={image.childImageSharp.fluid.src}
+        >
+          <div>
+            <p>hello</p>
+          </div>
+        </BgImage>
+        {/* <div
           className="full-width-image-container margin-top-0"
           style={{
             backgroundImage: `url(${
               !!image.childImageSharp ? image.childImageSharp.fluid.src : image
             })`,
           }}
-        >
+        > */}
+        <div>
           <h1
             className="has-text-weight-bold is-size-1"
             style={{
