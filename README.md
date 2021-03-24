@@ -71,7 +71,12 @@ New Page Template:
   2. Create Preview in src/cms/preview-templates folder
   3. Call the preview in cms.js using netlify cms
   4. Create needed collections and fields within  static/admin/config.yml
-  5. Call the gatsby CreatePages method within  gatsby-node.js. This will actually create the pages from the template at build time. 
+  5. Call the gatsby CreatePages method within  gatsby-node.js. This will actually create the pages from the template at build time.
+
+Notes About CMS: 
+  1. Netlify CMS updates the remote repository with article additions, not local.
+        * Because of this you'll need to manually create markdown files when developing new features, or pull  & merge from master
+        * If you add through CMS for a collection that doesnt yet exist on master: will start causing failed builds to run on netlify using up build time.  
  
 ## Quick Fixes for Problems
 
