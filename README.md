@@ -80,6 +80,10 @@ Notes About CMS:
  
 ## Quick Fixes for Problems
 
+Gatsby:
+  * My pageContext isnt coming through, even with context assigned in the corresponding createPage() call. Where is it?
+      - We use Templates, where we do most of our coding, however the actual exported component includes a number of things together, mostly wrapping our template            in other parts of the body. Make sure you are catching pageContext here, and passing it to the call of your template. 
+
 Graphql:
   * I'm getting an error in trying to add a new field to a CMS collection, saying it cant be found. How do I fix?
     - This is fixed by adding dummy data so graphql knows what to expect. Create a markdown file in the appropriate location (ex. pages/learn/basics.md) and make         sure it has the field located in it. 
